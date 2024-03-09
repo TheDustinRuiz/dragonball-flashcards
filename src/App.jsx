@@ -1,11 +1,7 @@
-import { useState } from 'react';
 import './App.css'
 import Information from './components/Information.jsx';
 
 const App = () => {
-  const [count, setCount] = useState(0);
-  const [multiplier, setMultiplier] = useState(1);
-
   return (
     <div className="App">
       <h1>Dragonball Trivia</h1>
