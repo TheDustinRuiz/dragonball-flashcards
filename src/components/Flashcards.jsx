@@ -1,29 +1,41 @@
 import React, { useState } from "react";
+import UserInput from './UserInput.jsx';
 
-const Flashcards = ({ information, currentCardIndex, nextFlipCard }) => {
+const Flashcards = ({ information, currentCardIndex, nextCard, previousCard }) => {
     const [flipped, setFlipped] = useState(false);
 
     const toggleFlip = () => {
         setFlipped(!flipped);
     };
-    const nextButton = () => {
+    
+    const handleNextCard = () => {
+        nextCard();
         setFlipped(false);
-        nextFlipCard();
+    };
+
+    const handlePreviousCard = () => {
+        previousCard();
+        setFlipped(false);
     };
 
     return (
         <div className="Flashcards">
-            <div class={`flip-card ${flipped ? 'flipped' : ''}`} onClick={toggleFlip}>
-                <div class="flip-card-inner">
-                    <div class="flip-card-front">
+            <div className={`flip-card ${flipped ? 'flipped' : ''}`} onClick={toggleFlip}>
+                <div className="flip-card-inner">
+                    <div className="flip-card-front">
                         <p>{information[currentCardIndex].frontQuestion}</p>
                     </div>
-                    <div class="flip-card-back">
+                    <div className="flip-card-back">
                         <p>{information[currentCardIndex].backAnswer}</p>
                     </div>
                 </div>
             </div>
-            <button onClick={nextButton}>→</button>
+            <UserInput information={information} currentCardIndex={currentCardIndex}/>
+            {/* <button onClick={nextButton}>→</button> */}
+            <div className="button-container">    
+                <button onClick={handlePreviousCard}>Back</button>
+                <button onClick={handleNextCard}>Next</button>
+            </div>
         </div>
     );
 };

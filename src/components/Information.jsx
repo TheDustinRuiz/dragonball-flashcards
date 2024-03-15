@@ -47,14 +47,21 @@ const Information = () => {
         },
     ];
 
-    const nextFlipCard = () => {
-        const randomIndex = Math.floor(Math.random() * information.length);
-        setCurrentCardIndex(randomIndex);
+    // const nextFlipCard = () => {
+    //     const randomIndex = Math.floor(Math.random() * information.length);
+    //     setCurrentCardIndex(randomIndex);
+    // };
+    const nextCard = () => {
+        setCurrentCardIndex((prevIndex) => (prevIndex + 1) % information.length);
+    };
+
+    const previousCard = () => {
+        setCurrentCardIndex((prevIndex) => (prevIndex - 1 + information.length) % information.length);
     };
 
     return (
         <div>
-            <Flashcards information={information} currentCardIndex={currentCardIndex} nextFlipCard={nextFlipCard} />
+            <Flashcards information={information} currentCardIndex={currentCardIndex} nextCard={nextCard} previousCard={previousCard} />
         </div>
     );
 };
